@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Windows系统下基于github+hexo的个人Blog初步搭建 | FloatingRaft</title><meta name="author" content="FloatingRaft"><meta name="copyright" content="FloatingRaft"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考教程： 【零成本】Hexo个人博客搭建教程 | 无需服务器_哔哩哔哩_bilibili 如何用Hexo搭建个人博客? (fiveth.cc)     一、工具1.Github账号首先需要有一个Github账号，没有的在Github官网上注册一个GitHub · Build and ship software on a single, collaborative platform · GitH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows系统下基于github+hexo的个人Blog初步搭建">
+<meta property="og:url" content="http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="FloatingRaft">
+<meta property="og:description" content="参考教程： 【零成本】Hexo个人博客搭建教程 | 无需服务器_哔哩哔哩_bilibili 如何用Hexo搭建个人博客? (fiveth.cc)     一、工具1.Github账号首先需要有一个Github账号，没有的在Github官网上注册一个GitHub · Build and ship software on a single, collaborative platform · GitH">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/FloatingRaft.jpg">
+<meta property="article:published_time" content="2024-11-05T04:09:11.805Z">
+<meta property="article:modified_time" content="2024-11-05T04:18:57.112Z">
+<meta property="article:author" content="FloatingRaft">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/FloatingRaft.jpg"><link rel="shortcut icon" href="/img/raft.svg"><link rel="canonical" href="http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Windows系统下基于github+hexo的个人Blog初步搭建',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-11-05 12:18:57',
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="FloatingRaft" type="application/atom+xml">
+</head><body><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/boat.svg" alt="Logo"><span class="site-name">FloatingRaft</span></a><a class="nav-page-title" href="/"><span class="site-name">Windows系统下基于github+hexo的个人Blog初步搭建</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Windows系统下基于github+hexo的个人Blog初步搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-05T04:09:11.805Z" title="发表于 2024-11-05 12:09:11">2024-11-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-05T04:18:57.112Z" title="更新于 2024-11-05 12:18:57">2024-11-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>参考教程：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ju4m1c7WR/?vd_source=72840f1407bd8d539300fcc6c32c4fc5">【零成本】Hexo个人博客搭建教程 | 无需服务器_哔哩哔哩_bilibili</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.fiveth.cc/p/bb32/">如何用Hexo搭建个人博客? (fiveth.cc)</a>   </p>
+</blockquote>
+<h3 id="一、工具"><a href="#一、工具" class="headerlink" title="一、工具"></a>一、工具</h3><h5 id="1-Github账号"><a href="#1-Github账号" class="headerlink" title="1.Github账号"></a>1.Github账号</h5><p>首先需要有一个Github账号，没有的在Github官网上注册一个<a target="_blank" rel="noopener" href="https://github.com/">GitHub · Build and ship software on a single, collaborative platform · GitHub</a></p>
+<p>（ps：Github有时候可能会打不开或者加载速度慢，可以用Watt Toolkit加速）</p>
+<h5 id="2-NodeJS"><a href="#2-NodeJS" class="headerlink" title="2.NodeJS"></a>2.NodeJS</h5><p>NodeJS官方下载链接<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/download/prebuilt-installer">Node.js — 下载 Node.js® (nodejs.org)</a></p>
+<p>NodeJS的安装过程可以查看这篇文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuqiyun/p/8133904.html">Node.js安装及环境配置之Windows篇 - 刘奇云 - 博客园 (cnblogs.com)</a>，最好是安装最新版的NodeJS</p>
+<h5 id="3-Git"><a href="#3-Git" class="headerlink" title="3.Git"></a>3.Git</h5><p>Git官方下载链接<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<p>后续我们对hexo进行部署需要用到Git，安装过程可以参考这篇<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xueweisuoyong/p/11914045.html">Windows系统Git安装教程（详解Git安装过程） - 学为所用 - 博客园 (cnblogs.com)</a>，同样也是安装最新版的</p>
+<h5 id="4-Hexo"><a href="#4-Hexo" class="headerlink" title="4.Hexo"></a>4.Hexo</h5><p>在安装hexo之前，我们先检测一下是否全部下载安装成功</p>
+<p>管理员身份运行cmd，输入以下指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v #这是nodejs自带的</span><br><span class="line">git -v</span><br></pre></td></tr></table></figure>
+
+<p>若正常输出版本号则代表安装成功</p>
+<p>接下来我们要下载安装hexo，在cmd中输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli g</span><br></pre></td></tr></table></figure>
+
+<p>如果无法安装，则改为输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx install hexo</span><br></pre></td></tr></table></figure>
+
+<p>后续若还有npm报错的，一律改为npx</p>
+<p>至此，已经完成了工具的准备</p>
+<h3 id="二、搭建仓库"><a href="#二、搭建仓库" class="headerlink" title="二、搭建仓库"></a>二、搭建仓库</h3><p>接下来准备在Github中搭建用于存放静态页面的仓库</p>
+<p>首先登录Github，在右上角点击加号，选择New repository</p>
+<p>仓库名输入“用户名.github.io”</p>
+<p>勾选Public，勾选add a readme file，然后Create创建</p>
+<h3 id="三、生成ssh-key"><a href="#三、生成ssh-key" class="headerlink" title="三、生成ssh key"></a>三、生成ssh key</h3><p>电脑任意位置右键空白处，选择git bash here，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>敲4下enter</p>
+<p>然后进入C:\Users\用户名，找到.ssh文件夹</p>
+<p>:::color3<br><strong><font style="color:#DF2A3F;">注意，用户文件夹名称必须是英文，不能包含中文！！</font></strong></p>
+<p><strong><font style="color:#DF2A3F;">若用户文件夹名为中文，删除.ssh文件夹，修改文件夹名后再重复上面生成.ssh的步骤</font></strong></p>
+<p><strong><font style="color:#DF2A3F;">具体修改用户文件夹名称的方法笔者没找到，更简便的方法是新建一个用户</font></strong></p>
+<p>:::</p>
+<p>然后用记事本打开id_rsa.pub文件，全选文本内容复制</p>
+<p>然后打开github，右上角点击个人头像，选择“Settings”</p>
+<p>在左侧边栏找到“SSH and GPG keys”，新建一个ssh key，名称随意，在“Key”栏粘贴刚刚的文本内容</p>
+<p>然后点击“Add SSH key”</p>
+<p>接着我们测试一下是否创建成功</p>
+<p>如果有开Watt Toolkit一类加速器先关闭，避免报错</p>
+<p>在git bash中输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -t git@github.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、本地生成Blog内容"><a href="#四、本地生成Blog内容" class="headerlink" title="四、本地生成Blog内容"></a>四、本地生成Blog内容</h3><p>自选位置新建Blog文件夹，在文件夹中打开git bash，输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>如果报错command not found，则改为输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hexo init</span><br></pre></td></tr></table></figure>
+
+<p>然后输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo install</span><br></pre></td></tr></table></figure>
+
+<p>接着依次输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>现在我们就可以按住Ctrl键单击输出的链接访问我们的本地服务器了</p>
+<p>关闭网站后记得Ctrl+C关闭本地服务器</p>
+<h3 id="五、上线Blog"><a href="#五、上线Blog" class="headerlink" title="五、上线Blog"></a>五、上线Blog</h3><p>进入Blog文件夹，用记事本打开_config_yml</p>
+<p>拉到最底部，把deploy后面的全部删掉，复制粘贴这段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: git</span><br><span class="line">repository: </span><br><span class="line">branch: main</span><br></pre></td></tr></table></figure>
+
+<p>:::color3<br><strong><font style="color:#DF2A3F;">注意缩进格式，每行前面两个空格不要删，冒号后的一个空格也不要删</font></strong></p>
+<p>:::</p>
+<p><font style="color:#000000;">打开github，打开我们新建的仓库“用户名.github.io”，右上角点击Code，复制https链接</font></p>
+<p><font style="color:#000000;">将其粘贴至我们的_config.yml文件中</font><font style="color:#000000;background-color:#FBDE28;">repository: </font><font style="color:#000000;">后面（</font><strong><font style="color:#DF2A3F;">冒号后面的空格不要删！！！</font></strong><font style="color:#000000;">）</font></p>
+<p><font style="color:#000000;">保存后退出，在Blog文件夹打开git bash，输入以下指令安装自动部署发布工具</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p><font style="color:#000000;">然后依次输入</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>:::color3<br>如果是第一次使用git的话需要配置</p>
+<p>git config –global user.email “你的邮箱”<br>git config –global user.name “用户名”</p>
+<p>配置完后再hexo d上传</p>
+<p>在跳出来的窗口进行登录</p>
+<p>:::</p>
+<p>至此，个人Blog已初步搭建完成</p>
+<p>在浏览器内输入“用户名.github.io”，就可以访问我们的个人Blog主页了！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">FloatingRaft</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/">http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">FloatingRaft</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/FloatingRaft.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/FloatingRaft.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">FloatingRaft</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/FloatingRaft"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">无事发生……</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">一、工具</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Github%E8%B4%A6%E5%8F%B7"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.Github账号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-NodeJS"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.NodeJS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-Git"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.Git</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-Hexo"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.Hexo</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%90%AD%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">二、搭建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%94%9F%E6%88%90ssh-key"><span class="toc-number">3.</span> <span class="toc-text">三、生成ssh key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E5%9C%B0%E7%94%9F%E6%88%90Blog%E5%86%85%E5%AE%B9"><span class="toc-number">4.</span> <span class="toc-text">四、本地生成Blog内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%8A%E7%BA%BFBlog"><span class="toc-number">5.</span> <span class="toc-text">五、上线Blog</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/" title="Windows系统下基于github+hexo的个人Blog初步搭建">Windows系统下基于github+hexo的个人Blog初步搭建</a><time datetime="2024-11-05T04:09:11.805Z" title="发表于 2024-11-05 12:09:11">2024-11-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By FloatingRaft</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

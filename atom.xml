@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>FloatingRaft</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2024-11-05T04:18:57.112Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>FloatingRaft</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows系统下基于github+hexo的个人Blog初步搭建</title>
+    <link href="http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2024/11/05/Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E5%9F%BA%E4%BA%8Egithub+hexo%E7%9A%84%E4%B8%AA%E4%BA%BABlog%E5%88%9D%E6%AD%A5%E6%90%AD%E5%BB%BA/</id>
+    <published>2024-11-05T04:09:11.805Z</published>
+    <updated>2024-11-05T04:18:57.112Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>参考教程：</p><p><a href="https://www.bilibili.com/video/BV1Ju4m1c7WR/?vd_source=72840f1407bd8d539300fcc6c32c4fc5">【零成本】Hexo个人博客搭建教程 | 无需服务器_哔哩哔哩_bilibili</a></p><p><a href="https://blog.fiveth.cc/p/bb32/">如何用Hexo搭建个人博客? (fiveth.cc)</a>   </p></blockquote><h3 id="一、工具"><a href="#一、工具" class="headerlink" title="一、工具"></a>一、工具</h3><h5 id="1-Github账号"><a href="#1-Github账号" class="headerlink" title="1.Github账号"></a>1.Github账号</h5><p>首先需要有一个Github账号，没有的在Github官网上注册一个<a href="https://github.com/">GitHub · Build and ship software on a single, collaborative platform · GitHub</a></p><p>（ps：Github有时候可能会打不开或者加载速度慢，可以用Watt Toolkit加速）</p><h5 id="2-NodeJS"><a href="#2-NodeJS" class="headerlink" title="2.NodeJS"></a>2.NodeJS</h5><p>NodeJS官方下载链接<a href="https://nodejs.org/zh-cn/download/prebuilt-installer">Node.js — 下载 Node.js® (nodejs.org)</a></p><p>NodeJS的安装过程可以查看这篇文章<a href="https://www.cnblogs.com/liuqiyun/p/8133904.html">Node.js安装及环境配置之Windows篇 - 刘奇云 - 博客园 (cnblogs.com)</a>，最好是安装最新版的NodeJS</p><h5 id="3-Git"><a href="#3-Git" class="headerlink" title="3.Git"></a>3.Git</h5><p>Git官方下载链接<a href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p><p>后续我们对hexo进行部署需要用到Git，安装过程可以参考这篇<a href="https://www.cnblogs.com/xueweisuoyong/p/11914045.html">Windows系统Git安装教程（详解Git安装过程） - 学为所用 - 博客园 (cnblogs.com)</a>，同样也是安装最新版的</p><h5 id="4-Hexo"><a href="#4-Hexo" class="headerlink" title="4.Hexo"></a>4.Hexo</h5><p>在安装hexo之前，我们先检测一下是否全部下载安装成功</p><p>管理员身份运行cmd，输入以下指令</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v #这是nodejs自带的</span><br><span class="line">git -v</span><br></pre></td></tr></table></figure><p>若正常输出版本号则代表安装成功</p><p>接下来我们要下载安装hexo，在cmd中输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli g</span><br></pre></td></tr></table></figure><p>如果无法安装，则改为输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx install hexo</span><br></pre></td></tr></table></figure><p>后续若还有npm报错的，一律改为npx</p><p>至此，已经完成了工具的准备</p><h3 id="二、搭建仓库"><a href="#二、搭建仓库" class="headerlink" title="二、搭建仓库"></a>二、搭建仓库</h3><p>接下来准备在Github中搭建用于存放静态页面的仓库</p><p>首先登录Github，在右上角点击加号，选择New repository</p><p>仓库名输入“用户名.github.io”</p><p>勾选Public，勾选add a readme file，然后Create创建</p><h3 id="三、生成ssh-key"><a href="#三、生成ssh-key" class="headerlink" title="三、生成ssh key"></a>三、生成ssh key</h3><p>电脑任意位置右键空白处，选择git bash here，输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure><p>敲4下enter</p><p>然后进入C:\Users\用户名，找到.ssh文件夹</p><p>:::color3<br><strong><font style="color:#DF2A3F;">注意，用户文件夹名称必须是英文，不能包含中文！！</font></strong></p><p><strong><font style="color:#DF2A3F;">若用户文件夹名为中文，删除.ssh文件夹，修改文件夹名后再重复上面生成.ssh的步骤</font></strong></p><p><strong><font style="color:#DF2A3F;">具体修改用户文件夹名称的方法笔者没找到，更简便的方法是新建一个用户</font></strong></p><p>:::</p><p>然后用记事本打开id_rsa.pub文件，全选文本内容复制</p><p>然后打开github，右上角点击个人头像，选择“Settings”</p><p>在左侧边栏找到“SSH and GPG keys”，新建一个ssh key，名称随意，在“Key”栏粘贴刚刚的文本内容</p><p>然后点击“Add SSH key”</p><p>接着我们测试一下是否创建成功</p><p>如果有开Watt Toolkit一类加速器先关闭，避免报错</p><p>在git bash中输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -t git@github.com</span><br></pre></td></tr></table></figure><h3 id="四、本地生成Blog内容"><a href="#四、本地生成Blog内容" class="headerlink" title="四、本地生成Blog内容"></a>四、本地生成Blog内容</h3><p>自选位置新建Blog文件夹，在文件夹中打开git bash，输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><p>如果报错command not found，则改为输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx hexo init</span><br></pre></td></tr></table></figure><p>然后输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo install</span><br></pre></td></tr></table></figure><p>接着依次输入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>现在我们就可以按住Ctrl键单击输出的链接访问我们的本地服务器了</p><p>关闭网站后记得Ctrl+C关闭本地服务器</p><h3 id="五、上线Blog"><a href="#五、上线Blog" class="headerlink" title="五、上线Blog"></a>五、上线Blog</h3><p>进入Blog文件夹，用记事本打开_config_yml</p><p>拉到最底部，把deploy后面的全部删掉，复制粘贴这段</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: git</span><br><span class="line">repository: </span><br><span class="line">branch: main</span><br></pre></td></tr></table></figure><p>:::color3<br><strong><font style="color:#DF2A3F;">注意缩进格式，每行前面两个空格不要删，冒号后的一个空格也不要删</font></strong></p><p>:::</p><p><font style="color:#000000;">打开github，打开我们新建的仓库“用户名.github.io”，右上角点击Code，复制https链接</font></p><p><font style="color:#000000;">将其粘贴至我们的_config.yml文件中</font><font style="color:#000000;background-color:#FBDE28;">repository: </font><font style="color:#000000;">后面（</font><strong><font style="color:#DF2A3F;">冒号后面的空格不要删！！！</font></strong><font style="color:#000000;">）</font></p><p><font style="color:#000000;">保存后退出，在Blog文件夹打开git bash，输入以下指令安装自动部署发布工具</font></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p><font style="color:#000000;">然后依次输入</font></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>:::color3<br>如果是第一次使用git的话需要配置</p><p>git config –global user.email “你的邮箱”<br>git config –global user.name “用户名”</p><p>配置完后再hexo d上传</p><p>在跳出来的窗口进行登录</p><p>:::</p><p>至此，个人Blog已初步搭建完成</p><p>在浏览器内输入“用户名.github.io”，就可以访问我们的个人Blog主页了！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;参考教程：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1Ju4m1c7WR/?vd_source=72840f1407bd8d539300fcc6c32c4fc5&quot;&gt;【零成本】Hexo个人博客</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
