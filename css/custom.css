@@ -16,6 +16,12 @@ span {
 .announcement_content {
     font-family: "NanGouWuYangXingShu", sans-serif;
 } /* 公告文字字体设置 */
+.author-info-description {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+} /* 个人描述字体设置 */
+.headline {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+}
 
 /* 页脚透明 */
 #footer{
