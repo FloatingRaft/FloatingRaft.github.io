@@ -10,6 +10,15 @@ h1#site-title {
 span {
     font-family: "NanGouWuYangXingShu", sans-serif;
 } /* 内联元素侧边栏标题字体设置 */
+span.line {
+    font-family: system-ui;
+}
+span.toc-text {
+    font-family: system-ui;
+}
+span.toc-number {
+    font-family: system-ui;
+}
 .item-name {
     font-family: "NanGouWuYangXingShu", sans-serif;
 }
