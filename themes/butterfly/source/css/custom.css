@@ -1,0 +1,67 @@
+/* 字体 */
+@font-face{
+    font-family: "NanGouWuYangXingShu"; /* 字体名自定义即可 */
+    src: url("/fonts/NanGouWuYangXingShu.woff2") format('woff2'),
+         url("/fonts/NanGouWuYangXingShu.woff") format('woff'),
+         url("/fonts/NanGouWuYangXingShu.ttf") format('truetype'); /* 回退 */
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+h1#site-title {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+} /* 主页标题字体设置 */
+span {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+} /* 内联元素侧边栏标题字体设置 */
+span.line {
+    font-family: system-ui;
+}
+span.toc-text {
+    font-family: system-ui;
+}
+span.toc-number {
+    font-family: system-ui;
+}
+.item-name {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+}
+.announcement_content {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+} /* 公告文字字体设置 */
+.author-info-description {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+} /* 个人描述字体设置 */
+.headline {
+    font-family: "NanGouWuYangXingShu", sans-serif;
+}
+
+/* 页脚透明 */
+#footer{
+    background: transparent!important;
+}
+/* 页脚黑色透明玻璃效果移除 */
+#footer::before{
+    background: transparent!important;
+}
+/* 头图透明 */
+#page-header{
+    background: transparent!important;
+}
+/* 头图遮罩层透明 */
+#page-header::before{
+    background: transparent!important;
+}
+/*top-img黑色透明玻璃效果移除，不建议加，除非你执着于完全一图流或者背景图对比色明显 */
+#page-header.post-bg:before {
+    background-color: transparent!important;
+}
+/*夜间模式伪类遮罩层透明*/
+[data-theme="dark"]
+#footer::before{
+    background: transparent!important;
+}
+[data-theme="dark"]
+#page-header::before{
+    background: transparent!important;
+}
