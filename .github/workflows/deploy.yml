@@ -1,0 +1,54 @@
+name: Deploy Blog
+
+on:
+  push:
+    branches: [ main ] # 当推送到 main 分支时触发
+  workflow_dispatch: # 允许在 GitHub 网页手动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 拉取你的博客源代码
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # 重要！用于拉取 Butterfly 主题
+          fetch-depth: 0
+
+      # 2. 设置 Node.js 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 推荐使用稳定的长期支持版
+
+      # 3. 缓存依赖，加速后续构建
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 4. 安装依赖
+      - name: Install Dependencies
+        run: npm ci
+
+      # 5. 清除并生成静态网站文件
+      - name: Generate
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      # 6. 部署到 GitHub Pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # 这是GitHub自动生成的令牌，无需你修改
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 发布上一步 Hexo 生成的 public 文件夹内容
+          publish_dir: ./public
+          # 发布到的分支：通常为 gh-pages，除非你特别设置过
+          publish_branch: gh-pages
